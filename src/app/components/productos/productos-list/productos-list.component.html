@@ -1,0 +1,57 @@
+<div class="card border-primary mb-3">
+  <div class="card-header">Productos</div>
+  <div class="card-body text-primary">
+    <div class="row">
+      <div class="col-lg-7 col-md-7" *ngIf="!asignaciones">
+          <h2 class="withlead">Registro de Productos</h2>
+          <div class="my-2 text-left">
+              <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/productos/form']">
+                Crear Producto
+              </button>
+          </div>
+      </div>      
+    </div>
+
+    <div *ngIf="productos?.length == 0" class="alert alert-info">
+      No hay existen productos!
+    </div>
+    <table class="table table-bordered table-striped" *ngIf="productos?.length>0">
+      <thead>
+        <tr>
+          <th>Nombre</th>
+          <th>Código</th>
+          <th>Descripción</th>
+          <th>Precio</th>
+          <th>Cantidad</th>       
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let producto of productos">          
+          <td>{{ producto.nombre}}</td>
+          <td>{{ producto.codigo }}</td>
+          <td>{{ producto.descripcion }}</td>
+          <td>{{ producto.precio }}</td>
+          <td>{{ producto.cantidad }}</td>          
+          <td *ngIf="!asignaciones">
+            <ul class="navbar-nav mr-auto">
+              <li class="dropdown" style="text-transform: capitalize!important;">
+                <a class="btn btn-outline-primary dropdown-toggle" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 2px 5px">
+                  Acciones
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">                  
+                  <a class="dropdown-item" [routerLink]="['/productos/form', producto.id]">Editar</a>
+                  <a class="dropdown-item" [routerLink]=""  (click)='delete(producto)'>Eliminar</a>
+                </div>
+              </li>
+            </ul>           
+          </td>
+          <td *ngIf="asignaciones">
+            <input type="checkbox" (change)='selectProducto(producto, $event)' [checked]='producto.seleccionar'>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

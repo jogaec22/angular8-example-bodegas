@@ -1,0 +1,71 @@
+<ul class="alert alert-danger" *ngIf="errores?.length > 0">
+  <li *ngFor="let err of errores">
+    {{ err }}
+  </li>
+</ul>
+
+<div class="card bg-light">
+  <div class="card-header">
+    <h5>Registro Producto</h5>
+  </div>
+  <div class="card-body">
+
+    <form #productoForm="ngForm">
+      <div class="form-group row">
+        <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" [(ngModel)]="producto.nombre" name="nombre" #nombre="ngModel" required> <!-- required minlength="4" -->
+          <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+            <div *ngIf="nombre.errors.required">
+              Nombre es requerido
+            </div>            
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="codigo" class="col-form-label col-sm-2">Código</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" [(ngModel)]="producto.codigo" name="codigo" #codigo="ngModel"> 
+        </div>
+      </div>
+
+      <div class="form-group row">
+        <label for="descripcion" class="col-form-label col-sm-2">Descripción</label>
+        <div class="col-sm-6">
+          <input type="text" class="form-control" [(ngModel)]="producto.descripcion" name="descripcion" #descripcion="ngModel"> 
+        </div>
+      </div>   
+      
+      <div class="form-group row">
+        <label for="precio" class="col-form-label col-sm-2">Precio</label>
+        <div class="col-sm-6">
+          <input type="number" step="0.01"  min="0" class="form-control" [(ngModel)]="producto.precio" name="precio" #precio="ngModel">
+          <div class="alert alert-danger" *ngIf="precio.invalid && (precio.dirty || precio.touched)">
+            <div *ngIf="precio.errors.required">
+              Precio es requerido
+            </div>            
+          </div>
+        </div>
+      </div>   
+
+      <div class="form-group row">
+        <label for="cantidad" class="col-form-label col-sm-2">Cantidad</label>
+        <div class="col-sm-6">
+          <input type="number" step="0.01"  min="1" class="form-control" min="0" [(ngModel)]="producto.cantidad" name="cantidad" #cantidad="ngModel">
+        </div>
+      </div>  
+            
+      <div class="form-group row">
+        <div class="col-sm-6">
+          <button class="btn btn-primary" role="button" (click)='create()' *ngIf="!producto.id else elseBlock" [disabled]="!productoForm.form.valid">Crear</button>
+
+          <ng-template #elseBlock>
+            <button class="btn btn-primary" role="button" (click)='update()' [disabled]="!productoForm.form.valid">Editar</button>
+          </ng-template>
+        </div>
+      </div>
+    </form>
+
+  </div>
+</div>

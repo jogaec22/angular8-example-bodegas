@@ -1,0 +1,45 @@
+/* You can add global styles to this file, and also import other style files */
+/* You can add global styles to this file, and also import other style files */
+html{
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+  min-height: 100%;
+  margin: 0;
+  font-family: 'Roboto', sans-serif;
+}
+
+.wrap{
+  padding-bottom: 60px;
+}
+
+form input[type=text], table tbody{
+  text-transform: uppercase;
+}
+
+table tbody {
+  font-size: 80%;
+  color: black;
+}
+
+table td, table th{
+  padding: .25rem .30rem !important;
+}
+
+table td img, table th img{
+  width: 60px !important;
+  height: 45px !important;
+}
+
+/*table td a:not([href]):not([tabindex]){
+  color: black!important;
+}*/
+
+
+
+.active{
+  border-bottom: 2px solid green;
+}

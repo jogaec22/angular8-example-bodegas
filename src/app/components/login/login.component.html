@@ -1,0 +1,61 @@
+<div class="card border-primary text-center">
+  <div class="card-header">
+    <h1>Gestion de Bodegas y Productos</h1>
+    </div>
+  <div class="card-body">        
+      <div class="form-group">      	
+		    <h3>Ingresar</h3>
+		    <div *ngIf="errorMessage">
+		      <div class="alert alert-info">
+		        <strong>Error!</strong> {{errorMessage}}
+		      </div>
+		    </div>
+		     <form [formGroup]="loginForm">
+              <div class="form-group">
+                <input type="email" formControlName="email" class="form-control" placeholder="Correo Electrónico">
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" formControlName="password" placeholder="Contraseña">
+                <label class="error">{{errorMessage}}</label>
+                <p><a [routerLink]="['/olvide-password']">Olvidó su contraseña?</a></p>
+              </div>
+              <div class="form-group">
+                <input type="submit" (click)="tryLogin(loginForm.value)" class="btn btn-primary" value="Ingresar">
+              </div>
+		       <button type="button" class="btn btn-primary"   (click)="loginWithGoogle()">
+			      <i class="fab fa-google"></i>Inicie sesión con Google
+			    </button>
+		    </form>
+	</div>
+
+  <br>
+	<hr>
+
+	<div class="form-group">
+		<h3>Registrarse</h3>
+		<div *ngIf="errorMessage">
+	      <div class="alert alert-info">
+	        <strong>Error!</strong> {{errorMessage}}
+	      </div>
+	    </div>
+
+	    <form [formGroup]="registerForm">
+              <div class="form-group">
+                <input type="email" formControlName="email" class="form-control" placeholder="Correo Electrónico">
+              </div>
+               <div class="form-group">
+                <input type="password" class="form-control" formControlName="password" placeholder="Password">                
+              </div>
+              <div class="form-group">
+                <input type="password" class="form-control" formControlName="confirmPassword" placeholder="Confirmar Password">
+                <label class="error">{{errorMessage}}</label>
+                <label class="success">{{successMessage}}</label>
+              </div>
+              <div class="form-group">
+                <input type="submit" (click)="tryRegister(registerForm.value)" class="btn btn-primary" value="Registrarse">
+              </div>              
+            </form>
+		 
+	</div>
+  </div>
+</div>

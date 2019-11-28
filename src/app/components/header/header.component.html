@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" [routerLink]=""> {{ title }}</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item">
+        <a class="nav-link" style="color:white" [routerLink]="['/']">Inicio <span class="sr-only">(current)</span></a>
+      </li>           
+      <li class="nav-item" [routerLinkActive]="['active']">
+        <a class="nav-link" style="color:white" [routerLink]="['/productos']">Productos</a>
+      </li>
+      <li class="nav-item" [routerLinkActive]="['active']">                
+          <a class="nav-link" style="color:white" [routerLink]="['/bodegas']">
+            Bodegas
+          </a>
+      </li>
+      <li class="nav-item" routerLinkActive="active">
+        <ul class="navbar-nav mr-auto">
+          <li class="dropdown">
+            <a class="btn btn-outline-primary dropdown-toggle" role="button"
+               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="border: none; color:white" >
+              Asignaciones
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+              <a class="dropdown-item"  [routerLink]="['/asignaciones']">Asginar Productos a Bodegas</a>
+            </div>
+          </li>
+        </ul>
+      </li>
+    </ul>    
+    <ul class="navbar-nav">              
+      <img *ngIf="user.photoURL" class="card-img-top" src="{{ user.photoURL }}" alt="Card image cap" width="50" height="40" />
+      &nbsp;&nbsp;
+      <li class="dropdown">
+        <a class="btn btn-outline-primary dropdown-toggle" [routerLink]="" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          {{user.displayName}}          
+        </a>        
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+          <a  [routerLink]='["/perfiluser"]' class="dropdown-item" aria-labelledby="dropdownMenuLink">Mi Perfil</a>
+           <a (click)="logout()" class="dropdown-item" type="submit" aria-labelledby="dropdownMenuLink">Sign Out</a>
+        </div>
+      </li>
+    </ul>
+  </div>
+</nav>

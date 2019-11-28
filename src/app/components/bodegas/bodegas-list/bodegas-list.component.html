@@ -1,0 +1,50 @@
+<div class="card border-primary mb-3">
+  <div class="card-header">Bodegas</div>
+  <div class="card-body text-primary">
+    <div class="row">
+      <div class="col-lg-7 col-md-7">
+          <h2 class="withlead">Registro de Bodegas</h2>
+          <div class="my-2 text-left">
+              <button class="btn btn-rounded btn-primary" type="button" [routerLink]="['/bodegas/form']">
+                Crear Bodega
+              </button>
+          </div>
+      </div>      
+    </div>
+
+    <div *ngIf="bodegas?.length == 0" class="alert alert-info">
+      No hay existen bodegas!
+    </div>
+    <table class="table table-bordered table-striped" *ngIf="bodegas?.length>0">
+      <thead>
+        <tr>
+          <th>Código</th>
+          <th>Nombre</th>          
+          <th>Ciudad</th>              
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let bodega of bodegas">          
+          <td>{{ bodega.codigo }}</td>
+          <td>{{ bodega.nombre }}</td>
+          <td>{{ bodega.ciudad }}</td>
+          <td>
+            <ul class="navbar-nav mr-auto">
+              <li class="dropdown" style="text-transform: capitalize!important;">
+                <a class="btn btn-outline-primary dropdown-toggle" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="padding: 2px 5px">
+                  Acciones
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">                  
+                  <a class="dropdown-item" [routerLink]="['/bodegas/form', bodega.id]">Editar</a>
+                  <a class="dropdown-item" [routerLink]=""  (click)='delete(bodega)'>Eliminar</a>
+                </div>
+              </li>
+            </ul>           
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

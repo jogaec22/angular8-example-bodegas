@@ -1,0 +1,22 @@
+<div class="row">
+	<div class="col-lg-6">
+		<h2>Escoga una Bodega</h2>
+		<ul class="bodegas">
+			<li *ngFor="let bodega of bodegas"
+			  [class.selected]="bodega === selectedBodega"
+			  (click)="onSelect(bodega)">
+			  <span class="badge">{{bodega.codigo}}</span> {{bodega.nombre}}
+			</li>
+		</ul>
+		<button class="btn btn-primary" (click)="asignar()" [disabled]='!selectedBodega'>Asginar</button>
+		<app-productos-list 
+			[asignaciones]='true' 
+			[bodega]="selectedBodega"
+			(seleccionar)="recibeProducto($event)">
+				
+		</app-productos-list>
+		
+	</div>
+
+	<app-detalle *ngIf="selectedBodega" [bodega]="selectedBodega" [productos]='productos'></app-detalle>
+</div>
